@@ -4,6 +4,8 @@ import br.com.duarte.models.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -23,4 +25,24 @@ public class PersonService {
         return person;
     }
 
+    public List<Person> findAll() {
+        log.info("Procurando todas as pessoas...");
+
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            Person person = mockPerson(i);
+            persons.add(person);
+        }
+        return persons;
+    }
+
+    private Person mockPerson(int i) {
+        Person person = new Person();
+        person.setId(counter.incrementAndGet());
+        person.setFirstName("Nome: " + i);
+        person.setLastName("Sobrenome: " + i);
+        person.setAddress("Algum lugar do Brasil...");
+        person.setGender("Não definido");
+        return person;
+    }
 }
