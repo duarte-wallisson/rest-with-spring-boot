@@ -16,7 +16,7 @@ public class PersonService {
     public Person findById(String id) {
         log.info("Procurando uma pessoa...");
 
-        var person =  new Person();
+        var person = new Person();
         person.setId(counter.incrementAndGet());
         person.setFirstName("Wallisson");
         person.setLastName("Duarte");
@@ -34,6 +34,22 @@ public class PersonService {
             persons.add(person);
         }
         return persons;
+    }
+
+    public Person insert(Person person) {
+        log.info("Inserindo uma pessoa.");
+
+        return person;
+    }
+
+    public Person update(Person person) {
+        log.info("Atualizando uma pessoa.");
+
+        return person;
+    }
+
+    public void delete(String id) {
+        log.info("Deletando uma pessoa.");
     }
 
     private Person mockPerson(int i) {
