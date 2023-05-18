@@ -1,7 +1,7 @@
 package br.com.duarte.exceptions.handler;
 
 import br.com.duarte.exceptions.ExceptionResponse;
-import br.com.duarte.exceptions.UnsupportedMathOperationException;
+import br.com.duarte.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,13 +25,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception exception, WebRequest request){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception exception, WebRequest request){
         var exceptionResponse = ExceptionResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())
                 .details(request.getDescription(false))
                 .build();
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
