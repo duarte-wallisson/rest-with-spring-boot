@@ -2,14 +2,12 @@ package br.com.duarte.services;
 
 import br.com.duarte.exceptions.ResourceNotFoundException;
 import br.com.duarte.models.Person;
+import br.com.duarte.repositories.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.PersonRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 @Slf4j
