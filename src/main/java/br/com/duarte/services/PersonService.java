@@ -1,6 +1,9 @@
 package br.com.duarte.services;
 
+import br.com.duarte.data.vo.v1.PersonVO;
 import br.com.duarte.exceptions.ResourceNotFoundException;
+
+import br.com.duarte.mapper.DozerMapper;
 import br.com.duarte.models.Person;
 import br.com.duarte.repositories.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -15,39 +18,48 @@ public class PersonService {
 
     @Autowired
     PersonRepository repository;
-    public Person findById(Long id) {
-        log.info("looking for a person.");
+    public PersonVO findById(Long id) {
+        log.info("Looking for a person.");
 
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         log.info("Looking for people.");
 
-        return repository.findAll();
+        return DozerMapper.parseListObjects(repository.findAll(), null);
     }
 
-    public Person insert(Person person) {
+    public PersonVO insert(PersonVO person) {
         log.info("Inserting a person.");
 
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
-    public Person update(Person person) {
-        log.info("Update a person.");
+    public PersonVO update(PersonVO person) {
+        log.info("Updating a person.");
 
-        var entity = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
+        var entity = repository.findById(person.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return repository.save(person);
+
+        var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public void delete(Long id) {
         log.info("Remove a person.");
 
-        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         repository.delete(entity);
     }
 
