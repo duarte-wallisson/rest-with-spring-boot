@@ -16,27 +16,27 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
     public Person findById(Long id) {
-        log.info("Procurando uma pessoa...");
+        log.info("looking for a person.");
 
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pessoa não encontrada com esse ID!"));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
     }
 
     public List<Person> findAll() {
-        log.info("Procurando todas as pessoas...");
+        log.info("Looking for people.");
 
         return repository.findAll();
     }
 
     public Person insert(Person person) {
-        log.info("Inserindo uma pessoa.");
+        log.info("Inserting a person.");
 
         return repository.save(person);
     }
 
     public Person update(Person person) {
-        log.info("Atualizando uma pessoa.");
+        log.info("Update a person.");
 
-        var entity = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("Pessoa não encontrada com esse ID!"));
+        var entity = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
@@ -45,9 +45,9 @@ public class PersonService {
     }
 
     public void delete(Long id) {
-        log.info("Deletando uma pessoa.");
+        log.info("Remove a person.");
 
-        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pessoa não encontrada com esse ID!"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
         repository.delete(entity);
     }
 
