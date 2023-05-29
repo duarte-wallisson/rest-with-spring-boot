@@ -3,7 +3,7 @@ package br.com.duarte.services;
 import br.com.duarte.data.vo.v1.PersonVO;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 
-import br.com.duarte.mapper.DozerMapper;
+import br.com.duarte.mapper.MyModelMapper;
 import br.com.duarte.models.Person;
 import br.com.duarte.repositories.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -21,20 +21,20 @@ public class PersonService {
 
     public List<PersonVO> findAll() {
         log.info("Looking for people.");
-        return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
+        return MyModelMapper.parseListObjects(repository.findAll(), PersonVO.class);
     }
     public PersonVO findById(Long id) {
         log.info("Looking for a person.");
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        return DozerMapper.parseObject(entity, PersonVO.class);
+        return MyModelMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO insert(PersonVO person) {
         log.info("Inserting a person.");
 
-        var entity = DozerMapper.parseObject(person, Person.class);
-        return DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        var entity = MyModelMapper.parseObject(person, Person.class);
+        return MyModelMapper.parseObject(repository.save(entity), PersonVO.class);
     }
 
     public PersonVO update(PersonVO person) {
@@ -48,7 +48,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return MyModelMapper.parseObject(repository.save(entity), PersonVO.class);
     }
 
     public void delete(Long id) {
