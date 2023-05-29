@@ -1,7 +1,6 @@
 package br.com.duarte.controllers;
 
-import br.com.duarte.data.vo.v1.PersonVO;
-import br.com.duarte.models.Person;
+import br.com.duarte.data.vo.v1.PersonDTO;
 import br.com.duarte.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +15,22 @@ public class PersonController {
     private PersonService service;
 
     @GetMapping
-    public List<PersonVO> findAll() {
+    public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}")
-    public PersonVO findById(@PathVariable(name = "id") Long id) {
+    public PersonDTO findById(@PathVariable(name = "id") Long id) {
         return service.findById(id);
     }
 
     @PostMapping()
-    public PersonVO insert(@RequestBody() PersonVO person) {
+    public PersonDTO insert(@RequestBody() PersonDTO person) {
         return service.insert(person);
     }
 
     @PutMapping()
-    public PersonVO update(@RequestBody() PersonVO person) {
+    public PersonDTO update(@RequestBody() PersonDTO person) {
         return service.update(person);
     }
 

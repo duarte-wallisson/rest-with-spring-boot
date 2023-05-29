@@ -1,6 +1,6 @@
 package br.com.duarte.services;
 
-import br.com.duarte.data.vo.v1.PersonVO;
+import br.com.duarte.data.vo.v1.PersonDTO;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 
 import br.com.duarte.mapper.MyModelMapper;
@@ -19,25 +19,25 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
 
-    public List<PersonVO> findAll() {
+    public List<PersonDTO> findAll() {
         log.info("Looking for people.");
-        return MyModelMapper.parseListObjects(repository.findAll(), PersonVO.class);
+        return MyModelMapper.parseListObjects(repository.findAll(), PersonDTO.class);
     }
-    public PersonVO findById(Long id) {
+    public PersonDTO findById(Long id) {
         log.info("Looking for a person.");
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        return MyModelMapper.parseObject(entity, PersonVO.class);
+        return MyModelMapper.parseObject(entity, PersonDTO.class);
     }
 
-    public PersonVO insert(PersonVO person) {
+    public PersonDTO insert(PersonDTO person) {
         log.info("Inserting a person.");
 
         var entity = MyModelMapper.parseObject(person, Person.class);
-        return MyModelMapper.parseObject(repository.save(entity), PersonVO.class);
+        return MyModelMapper.parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public PersonVO update(PersonVO person) {
+    public PersonDTO update(PersonDTO person) {
         log.info("Updating a person.");
 
         var entity = repository.findById(person.getId())
@@ -48,7 +48,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return MyModelMapper.parseObject(repository.save(entity), PersonVO.class);
+        return MyModelMapper.parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id) {
