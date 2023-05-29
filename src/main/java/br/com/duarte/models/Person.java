@@ -23,9 +23,10 @@ public class Person implements Serializable {
     @Column(name = "last_name", nullable = false, length = 40)
     private String lastName;
 
+    @Column(length = 20)
+    private String gender;
+
     @Column(length = 100)
     private String address;
 
-    @Column(length = 20)
-    private String gender;
 }
