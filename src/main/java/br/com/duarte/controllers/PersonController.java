@@ -1,6 +1,7 @@
 package br.com.duarte.controllers;
 
 import br.com.duarte.data.vo.v1.PersonDTO;
+import br.com.duarte.data.vo.v2.PersonDTOV2;
 import br.com.duarte.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,11 @@ public class PersonController {
     @PostMapping()
     public PersonDTO insert(@RequestBody() PersonDTO person) {
         return service.insert(person);
+    }
+
+    @PostMapping(value = "/v2")
+    public PersonDTOV2 insertV2(@RequestBody() PersonDTOV2 person) {
+        return service.insertV2(person);
     }
 
     @PutMapping()
