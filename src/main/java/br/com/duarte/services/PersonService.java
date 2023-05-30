@@ -3,6 +3,7 @@ package br.com.duarte.services;
 import br.com.duarte.controllers.PersonController;
 import br.com.duarte.data.vo.v1.PersonDTO;
 import br.com.duarte.data.vo.v2.PersonDTOV2;
+import br.com.duarte.exceptions.RequiredObjectIsNullException;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 
 import br.com.duarte.mapper.MyModelMapper;
@@ -45,6 +46,8 @@ public class PersonService {
     }
 
     public PersonDTO insert(PersonDTO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
+
         log.info("Inserting a person.");
 
         var entity = MyModelMapper.parseObject(person, Person.class);
@@ -61,6 +64,8 @@ public class PersonService {
     }
 
     public PersonDTO update(PersonDTO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
+
         log.info("Updating a person.");
 
         var entity = repository.findById(person.getId())
@@ -71,7 +76,9 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return MyModelMapper.parseObject(repository.save(entity), PersonDTO.class);
+        var personDTO = MyModelMapper.parseObject(repository.save(entity), PersonDTO.class);
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getId())).withSelfRel());
+        return personDTO;
     }
 
     public void delete(Long id) {

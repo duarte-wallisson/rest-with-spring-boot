@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class DozerConverterTest {
+public class ModelMapperConverterTest {
     MockPerson inputObject;
 
     @BeforeEach
@@ -19,7 +19,7 @@ public class DozerConverterTest {
     }
 
     @Test
-    public void parseEntityToVOTest() {
+    public void parseEntityToDTOTest() {
         PersonDTO output = MyModelMapper.parseObject(inputObject.mockEntity(), PersonDTO.class);
         assertEquals(Long.valueOf(0L), output.getId());
         assertEquals("First Name Test0", output.getFirstName());
@@ -29,7 +29,7 @@ public class DozerConverterTest {
     }
 
     @Test
-    public void parseEntityListToVOListTest() {
+    public void parseEntityListToDTOListTest() {
         List<PersonDTO> outputList = MyModelMapper.parseListObjects(inputObject.mockEntityList(), PersonDTO.class);
         PersonDTO outputZero = outputList.get(0);
 
@@ -57,8 +57,8 @@ public class DozerConverterTest {
     }
 
     @Test
-    public void parseVOToEntityTest() {
-        Person output = MyModelMapper.parseObject(inputObject.mockVO(), Person.class);
+    public void parseDTOToEntityTest() {
+        Person output = MyModelMapper.parseObject(inputObject.mockDTO(), Person.class);
         assertEquals(Long.valueOf(0L), output.getId());
         assertEquals("First Name Test0", output.getFirstName());
         assertEquals("Last Name Test0", output.getLastName());
@@ -67,8 +67,8 @@ public class DozerConverterTest {
     }
 
     @Test
-    public void parserVOListToEntityListTest() {
-        List<Person> outputList = MyModelMapper.parseListObjects(inputObject.mockVOList(), Person.class);
+    public void parserDTOListToEntityListTest() {
+        List<Person> outputList = MyModelMapper.parseListObjects(inputObject.mockDTOList(), Person.class);
         Person outputZero = outputList.get(0);
 
         assertEquals(Long.valueOf(0L), outputZero.getId());
