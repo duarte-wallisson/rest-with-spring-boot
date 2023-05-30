@@ -1,6 +1,7 @@
 package br.com.duarte.exceptions.handler;
 
 import br.com.duarte.exceptions.ExceptionResponse;
+import br.com.duarte.exceptions.RequiredObjectIsNullException;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 .details(request.getDescription(false))
                 .build();
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleRequiredObjectIsNullException(Exception exception, WebRequest request){
+        var exceptionResponse = ExceptionResponse.builder()
+                .timestamp(new Date())
+                .message(exception.getMessage())
+                .details(request.getDescription(false))
+                .build();
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
