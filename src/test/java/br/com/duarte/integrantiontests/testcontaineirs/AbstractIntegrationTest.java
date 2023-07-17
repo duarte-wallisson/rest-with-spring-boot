@@ -14,7 +14,8 @@ import java.util.stream.Stream;
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 public class AbstractIntegrationTest {
 
-    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+
         static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.33");
 
         private static void startContainers() {
@@ -23,12 +24,11 @@ public class AbstractIntegrationTest {
 
         private static Map<String, String> createConnectionConfiguration() {
             return Map.of(
-                "spring.datasource.url:", mysql.getJdbcUrl(),
-                "spring.datasource.username:", mysql.getUsername(),
-                "spring.datasource.password:", mysql.getPassword()
+                    "spring.datasource.url", mysql.getJdbcUrl(),
+                    "spring.datasource.username", mysql.getUsername(),
+                    "spring.datasource.password", mysql.getPassword()
             );
         }
-
 
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
@@ -36,11 +36,10 @@ public class AbstractIntegrationTest {
             startContainers();
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
             MapPropertySource testcontainers = new MapPropertySource(
-                "testcontainers",
+                    "testcontainers",
                     (Map) createConnectionConfiguration());
             environment.getPropertySources().addFirst(testcontainers);
         }
-
-
     }
 }
+
