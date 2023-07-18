@@ -1,5 +1,5 @@
 ﻿CREATE TABLE `book` (
-  `id` INT(10) AUTO_INCREMENT PRIMARY KEY,
+  `id` bigint AUTO_INCREMENT PRIMARY KEY,
   `author` longtext,
   `launch_date` varchar(40) NOT NULL,
   `price` decimal(65,2) NOT NULL,
