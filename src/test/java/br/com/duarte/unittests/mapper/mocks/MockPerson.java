@@ -1,6 +1,6 @@
 package br.com.duarte.unittests.mapper.mocks;
 
-import br.com.duarte.data.vo.v1.PersonDTO;
+import br.com.duarte.data.dto.v1.PersonDTO;
 import br.com.duarte.models.Person;
 
 import java.util.ArrayList;

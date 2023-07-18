@@ -2,7 +2,7 @@ package br.com.duarte.unittests.mapper.mocks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import br.com.duarte.data.vo.v1.PersonDTO;
+import br.com.duarte.data.dto.v1.PersonDTO;
 import br.com.duarte.mapper.MyModelMapper;
 import br.com.duarte.models.Person;
 import org.junit.jupiter.api.BeforeEach;

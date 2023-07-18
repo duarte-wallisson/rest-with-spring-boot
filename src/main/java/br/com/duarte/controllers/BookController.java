@@ -1,6 +1,6 @@
 package br.com.duarte.controllers;
 
-import br.com.duarte.data.vo.v1.BookDTO;
+import br.com.duarte.data.dto.v1.BookDTO;
 import br.com.duarte.services.BookService;
 import br.com.duarte.util.MediaType;
 import io.swagger.v3.oas.annotations.Operation;

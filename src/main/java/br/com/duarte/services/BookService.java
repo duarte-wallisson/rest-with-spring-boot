@@ -1,7 +1,7 @@
 package br.com.duarte.services;
 
 import br.com.duarte.controllers.BookController;
-import br.com.duarte.data.vo.v1.BookDTO;
+import br.com.duarte.data.dto.v1.BookDTO;
 import br.com.duarte.exceptions.RequiredObjectIsNullException;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 import br.com.duarte.mapper.MyModelMapper;

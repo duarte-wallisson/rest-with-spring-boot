@@ -1,4 +1,4 @@
-package br.com.duarte.data.vo.v1;
+package br.com.duarte.data.dto.v1;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,8 +1,8 @@
 package br.com.duarte.services;
 
 import br.com.duarte.controllers.PersonController;
-import br.com.duarte.data.vo.v1.PersonDTO;
-import br.com.duarte.data.vo.v2.PersonDTOV2;
+import br.com.duarte.data.dto.v1.PersonDTO;
+import br.com.duarte.data.dto.v2.PersonDTOV2;
 import br.com.duarte.exceptions.RequiredObjectIsNullException;
 import br.com.duarte.exceptions.ResourceNotFoundException;
 

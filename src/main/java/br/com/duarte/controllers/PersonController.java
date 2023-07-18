@@ -1,7 +1,7 @@
 package br.com.duarte.controllers;
 
-import br.com.duarte.data.vo.v1.PersonDTO;
-import br.com.duarte.data.vo.v2.PersonDTOV2;
+import br.com.duarte.data.dto.v1.PersonDTO;
+import br.com.duarte.data.dto.v2.PersonDTOV2;
 import br.com.duarte.services.PersonService;
 import br.com.duarte.util.MediaType;
 import io.swagger.v3.oas.annotations.Operation;

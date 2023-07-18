@@ -1,6 +1,6 @@
 package br.com.duarte.unittests.mapper.mocks;
 
-import br.com.duarte.data.vo.v1.BookDTO;
+import br.com.duarte.data.dto.v1.BookDTO;
 import br.com.duarte.mapper.MyModelMapper;
 import br.com.duarte.models.Book;
 import org.junit.jupiter.api.BeforeEach;

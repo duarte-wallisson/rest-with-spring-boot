@@ -1,6 +1,6 @@
 package br.com.duarte.mapper.custom;
 
-import br.com.duarte.data.vo.v2.PersonDTOV2;
+import br.com.duarte.data.dto.v2.PersonDTOV2;
 import br.com.duarte.models.Person;
 import org.springframework.stereotype.Service;
 
