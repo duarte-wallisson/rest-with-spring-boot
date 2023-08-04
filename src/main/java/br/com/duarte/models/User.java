@@ -28,7 +28,7 @@ public class User implements UserDetails, Serializable {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column
+    @Column(name = "password")
     private String password;
 
     @Column(name = "account_non_expired")
@@ -40,14 +40,16 @@ public class User implements UserDetails, Serializable {
     @Column(name = "credentials_non_expired")
     private Boolean credentialsNonExpired;
 
-    @Column
+    @Column(name = "enabled")
     private Boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_permission", joinColumns = {@JoinColumn(name = "id_user")},
-            inverseJoinColumns = {@JoinColumn(name = "id_permission")}
+    @JoinTable(name = "user_permission", joinColumns = {@JoinColumn (name = "id_user")},
+            inverseJoinColumns = {@JoinColumn (name = "id_permission")}
     )
     private List<Permission> permissions;
+
+    public User() {}
 
     public List<String> getRoles() {
         List<String> roles = new ArrayList<>();
@@ -56,7 +58,6 @@ public class User implements UserDetails, Serializable {
         }
         return roles;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
